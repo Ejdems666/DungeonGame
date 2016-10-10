@@ -18,7 +18,7 @@ public class FormField {
     protected String value = "";
     private boolean required = false;
 
-    public Object getValue() {
+   public String toString() {
         return value;
     }
 

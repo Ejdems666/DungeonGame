@@ -3,7 +3,10 @@ package Libs.Form;
 import Libs.Form.Inputs.FormField;
 import Libs.Form.Inputs.NumberField;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.Scanner;
 
 /**
  * Created by becva on 14.09.2016.
@@ -36,19 +39,32 @@ public class Form {
         return inputs.size();
     }
 
-    public Object get(String name) {
-        if(!inputs.containsKey(name)) {
-            // TODO: error log, maybe exception, but need a debugger wrapper to catch it
+    public String get(String name) {
+        return getInput(name).toString();
+    }
+    public float getNumber(String name) {
+        FormField input = getInput(name);
+        if (!(input instanceof NumberField)) {
+            System.out.println("Nonexistent number form field '"+name+"'.");
+            System.exit(1);
+        }
+        return ((NumberField) input).getValue();
+    }
+    private FormField getInput(String name) {
+        FormField input = inputs.get(name);
+        if(input == null) {
             System.out.println("Nonexistent form field '"+name+"'.");
             System.exit(1);
         }
-        return inputs.get(name).getValue();
+        return input;
     }
 
-    public HashMap<String,Object> getAllInputs() {
-        HashMap<String,Object> values = new HashMap<>();
+    public ArrayList<Float> getAllNumberInputs() {
+        ArrayList<Float> values = new ArrayList<>();
         for (Map.Entry<String,FormField> input : inputs.entrySet()) {
-            values.put(input.getKey(),input.getValue().getValue());
+            if (input.getValue() instanceof NumberField) {
+                values.add(((NumberField) input.getValue()).getValue());
+            }
         }
         return values;
     }

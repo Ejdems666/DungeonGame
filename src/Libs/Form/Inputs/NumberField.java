@@ -28,8 +28,8 @@ public class NumberField extends FormField {
         return this;
     }
 
-    public Object getValue() {
-        return value;
+    public float getValue() {
+        return Float.parseFloat(super.value);
     }
 
     public void askForInput(Scanner scanner) {

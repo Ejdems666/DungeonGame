@@ -9,12 +9,12 @@ public class DungeonGame {
     private static Form form = new Form();
     static {
         form.addContinue("test","Test");
+        form.addNumber("tesst","Test");
     }
 
     public static void main(String[] args) {
         form.askForAllFields();
-        System.out.println(form.getAllInputs().get("test"));
-        System.out.println(form.get("test"));
+        System.out.print(((int) form.getNumber("tesst")));
 //        Application game = new Application();
         // TODO: init
     }
