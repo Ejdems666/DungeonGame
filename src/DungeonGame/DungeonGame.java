@@ -9,7 +9,7 @@ public class DungeonGame {
     private static Form form = new Form();
     static {
         form.addContinue("test","Test");
-        form.addNumber("tesst","Test");
+        form.addNumber("tesst","Test").setRange(10,20).setRequired(true);
     }
 
     public static void main(String[] args) {

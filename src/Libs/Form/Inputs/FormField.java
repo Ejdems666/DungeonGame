@@ -16,9 +16,10 @@ public class FormField {
     protected String[] allowedValues = {};
     protected String defaultValue = "";
     protected String value = "";
+    protected int tryCount = 0;
     private boolean required = false;
 
-   public String toString() {
+    public String toString() {
         return value;
     }
 
@@ -42,7 +43,8 @@ public class FormField {
     }
 
     public void askForInput(Scanner scanner) {
-        System.out.println(label +": ");
+        tryCount++;
+        printLabel();
         value = scanner.nextLine();
         if(value.equals(HELP)) {
             printHelp();
@@ -60,6 +62,13 @@ public class FormField {
             System.out.println("Please fill in this field.");
             askForInput(scanner);
         }
+        tryCount = 0;
+    }
+    private void printLabel() {
+        if(tryCount == 1) {
+            printHelp();
+        }
+        System.out.println(label +": ");
     }
     protected void printHelp() {
         if(required) {
