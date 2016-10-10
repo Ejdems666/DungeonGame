@@ -1,4 +1,4 @@
-package Libs;
+package libs;
 
 import java.io.PrintStream;
 

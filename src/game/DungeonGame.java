@@ -1,6 +1,6 @@
-package DungeonGame;
+package game;
 
-import Libs.Form.Form;
+import libs.form.Form;
 
 /**
  * Created by Ejdems on 10/10/2016.

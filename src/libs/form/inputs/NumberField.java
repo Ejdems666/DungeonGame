@@ -1,9 +1,7 @@
-package Libs.Form.Inputs;
+package libs.form.inputs;
 
-import Libs.Form.Exceptions.AllowedValuesViolatedException;
-import Libs.Form.Form;
+import libs.form.exceptions.AllowedValuesViolatedException;
 
-import java.io.IOException;
 import java.util.Scanner;
 
 /**

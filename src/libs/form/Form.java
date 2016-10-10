@@ -1,7 +1,7 @@
-package Libs.Form;
+package libs.form;
 
-import Libs.Form.Inputs.FormField;
-import Libs.Form.Inputs.NumberField;
+import libs.form.inputs.FormField;
+import libs.form.inputs.NumberField;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
