@@ -1,4 +1,4 @@
-package Libs.Messager;
+package Libs;
 
 import java.io.PrintStream;
 
@@ -22,6 +22,7 @@ public class Output {
     public void separator() {
         message("-----------------------------------------------------------------------");
     }
+
     public void separator(String message) {
         message(message);
         separator();
