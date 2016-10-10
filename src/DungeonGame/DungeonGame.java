@@ -15,7 +15,6 @@ public class DungeonGame {
     public static void main(String[] args) {
         form.askForAllFields();
         System.out.print(((int) form.getNumber("tesst")));
-//        Application game = new Application();
-        // TODO: init
+        // TODO: new Dungeon map and generation inside DungeonMap
     }
 }
