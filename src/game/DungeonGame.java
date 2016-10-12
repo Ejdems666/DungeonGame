@@ -6,14 +6,10 @@ import libs.form.Form;
  * Created by Ejdems on 10/10/2016.
  */
 public class DungeonGame {
-    private static Form form = new Form();
-    static {
-        form.addContinue("test","Test");
-        form.addNumber("tesst","Test").setRange(10,20).setRequired(true);
-    }
+    private Player player;
 
-    public static void main(String[] args) throws Exception {
-        DungeonMap map = new DungeonMap();
+    public void run(PlayerFactory playerFactory, DungeonMap map){
+        player = playerFactory.getPlayer();
         map.createDungeonMap();
     }
 }

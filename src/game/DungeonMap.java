@@ -17,7 +17,7 @@ public class DungeonMap {
 
     }
 
-    public void createDungeonMap() throws Exception {
+    public void createDungeonMap() {
         // TODO: implement reading from a file
         String[] map = new String[4];
         map[0] = "0,1-42-1000,1-82,0";
