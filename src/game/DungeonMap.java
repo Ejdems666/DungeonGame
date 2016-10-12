@@ -1,5 +1,7 @@
 package game;
 
+import org.jetbrains.annotations.Nullable;
+
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -27,23 +29,24 @@ public class DungeonMap {
             String[] roomMappers = map[i].split(",");
             rooms.add(new ArrayList<Room>());
             for (int ii = 0; ii < roomMappers.length; ii++) {
-                rooms.get(i).add(createRoom(roomMappers[ii]));
+                rooms.get(i).add(getRoom(roomMappers[ii]));
             }
         }
         System.out.print(rooms);
     }
 
-    private Room createRoom(String roomMapper) {
+    @Nullable
+    private Room getRoom(String roomMapper) {
         if (roomMapper.charAt(0) == '0') {
             return null;
         } else {
             String[] extrasMapper = roomMapper.substring(2).split("-");
-            Room room = getRoom(extrasMapper);
+            Room room = createRoom(extrasMapper);
             return room;
         }
     }
 
-    private Room getRoom(String[] extrasMapper) {
+    private Room createRoom(String[] extrasMapper) {
         float gold;
         if(extrasMapper.length >= 2) {
             gold = Float.parseFloat(extrasMapper[1]);
