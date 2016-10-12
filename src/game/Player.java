@@ -6,6 +6,7 @@ package game;
 public class Player {
     private String name;
     private float gold;
+    private Room currentRoom;
 
     public Player(String name) {
         this.name = name;
@@ -18,5 +19,9 @@ public class Player {
 
     public void addGold(float gold) {
         this.gold += gold;
+    }
+
+    public void setCurrentRoom(Room currentRoom) {
+        this.currentRoom = currentRoom;
     }
 }
