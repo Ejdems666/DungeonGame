@@ -13,8 +13,11 @@ public class DungeonGame {
     }
 
     public static void main(String[] args) {
-        form.askForAllFields();
-        System.out.print(((int) form.getNumber("tesst")));
+        //form.askForAllFields();
+        //System.out.print(((int) form.getNumber("tesst")));
         // TODO: new Dungeon map and generation inside DungeonMap
+        
+        DungeonMap test = new DungeonMap();
+        test.createDungeonMap();
     }
 }
