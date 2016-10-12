@@ -5,9 +5,9 @@ package game;
  */
 public class Application {
     public static void main(String[] args) {
-        DungeonGame game = new DungeonGame();
         PlayerFactory playerFactory = new PlayerFactory();
         DungeonMap map = new DungeonMap();
+        DungeonGame game = new DungeonGame();
         game.run(playerFactory,map);
     }
 }
