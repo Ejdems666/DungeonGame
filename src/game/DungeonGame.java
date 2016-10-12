@@ -12,12 +12,8 @@ public class DungeonGame {
         form.addNumber("tesst","Test").setRange(10,20).setRequired(true);
     }
 
-    public static void main(String[] args) {
-        //form.askForAllFields();
-        //System.out.print(((int) form.getNumber("tesst")));
-        // TODO: new Dungeon map and generation inside DungeonMap
-        
-        DungeonMap test = new DungeonMap();
-        test.createDungeonMap();
+    public static void main(String[] args) throws Exception {
+        DungeonMap map = new DungeonMap();
+        map.createDungeonMap();
     }
 }

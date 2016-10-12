@@ -4,51 +4,40 @@ package game;
  * Created by Ejdems on 10/10/2016.
  */
 public class Room {
-    
-    boolean north = false;
-    boolean south = false;    
-    boolean east = false;    
-    boolean west = false; 
-    int goldReserve;
-    
-    
-    
-    
-    Room(){
+    final int NORTH = 1;
+    final int SOUTH = 2;
+    final int EAST = 4;
+    final int WEST = 8;
 
-    }//Room
+    private float passages = 0;
 
-    public void setNorth(boolean north) {
-        this.north = north;
+    float gold;
+    String note;
+
+    Room(float gold) {
+        this.gold = gold;
+        this.note = "Random note"; //TODO: make 'random' note generator
     }
 
-    public void setSouth(boolean south) {
-        this.south = south;
+    Room(float gold, String note) {
+        this.gold = gold;
+        this.note = note;
     }
 
-    public void setEast(boolean east) {
-        this.east = east;
+    public void setDirection(int direction) {
+        this.passages += direction;
     }
 
-    public void setWest(boolean west) {
-        this.west = west;
+    public boolean hasPassageTo(int direction) {
+        if(passages < direction) {
+            return false;
+        } else if(passages == direction) {
+            return true;
+        }
+        return passages/direction <= 2;
     }
 
-    public boolean isNorth() {
-        return north;
+    public String toString() {
+        return "Room with this gold: "+gold;
     }
-
-    public boolean isSouth() {
-        return south;
-    }
-
-    public boolean isEast() {
-        return east;
-    }
-
-    public boolean isWest() {
-        return west;
-    }
-    
-    
-}// class
+}
