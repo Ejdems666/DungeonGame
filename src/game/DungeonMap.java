@@ -41,21 +41,21 @@ public class DungeonMap {
             return null;
         } else {
             String[] extrasMapper = roomMapper.substring(2).split("-");
-            Room room = createRoom(extrasMapper);
+            float gold = getGold(extrasMapper);
+            Room room = new Room(gold);
+            setDirections(extrasMapper[0], room);
             return room;
         }
     }
 
-    private Room createRoom(String[] extrasMapper) {
+    private float getGold(String[] extrasMapper) {
         float gold;
         if(extrasMapper.length >= 2) {
             gold = Float.parseFloat(extrasMapper[1]);
         } else {
             gold = random.nextInt(10);
         }
-        Room room = new Room(gold);
-        setDirections(extrasMapper[0], room);
-        return room;
+        return gold;
     }
 
     private void setDirections(String directionMapper, Room room) {
