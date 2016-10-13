@@ -27,7 +27,9 @@ public class DungeonMap {
             String[] roomMappers = map[x].split(",");
             rooms.add(new ArrayList<Room>());
             for (int y = 0; y < roomMappers.length; y++) {
-                rooms.get(x).add(getRoom(roomMappers[y]));
+                Room room = getRoom(roomMappers[y]);
+                room.setPoint(x,y);
+                rooms.get(x).add(room);
             }
         }
         System.out.print(rooms);

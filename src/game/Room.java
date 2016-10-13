@@ -8,7 +8,9 @@ public class Room {
 
     float gold;
     String note;
-    int visit=0;
+    int visit = 0;
+    int x;
+    int y;
 
     Room(float gold, String note) {
         this.gold = gold;
@@ -31,6 +33,15 @@ public class Room {
         return note+gold+passages;
     }
 
+    public void visit() {
+        visit++;
+    }
+
+    public void setPoint(int x, int y) {
+        this.x = x;
+        this.y = y;
+    }
+
     public enum Direction {
         NORTH('n'), SOUTH('s'), WEST('w'), EAST('e');
 
@@ -43,9 +54,4 @@ public class Room {
             return  value;
         }
     }
-
-    public void visit() {
-        visit++;
-    }
-    
 }
