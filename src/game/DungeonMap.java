@@ -49,17 +49,15 @@ public class DungeonMap {
     }
 
     private float getGold(String[] extrasMapper) {
-        float gold;
         if(extrasMapper.length >= 2) {
-            gold = Float.parseFloat(extrasMapper[1]);
-        } else {
-            gold = random.nextInt(10);
+            return Float.parseFloat(extrasMapper[1]);
         }
-        return gold;
+        return random.nextInt(10);
     }
 
     private void setDirections(String directionMapper, Room room) {
         for (int i = 0; i < directionMapper.length(); i++) {
+            // TODO: add enumaration control
             char direction = directionMapper.charAt(i);
             room.setDirection(direction);
         }
