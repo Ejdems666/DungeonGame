@@ -10,14 +10,15 @@ public class Room {
     int visit = 0;
     int x;
     int y;
-    private static NoteGenerator noteGenerator = new NoteGenerator();
+//    private static NoteGenerator noteGenerator = new NoteGenerator();
 
     Room(float gold, String note) {
         this.gold = gold;
         if(!note.isEmpty()) {
             this.note = note;
         } else {
-            this.note = noteGenerator.getRandomNote();
+//            this.note = noteGenerator.getRandomNote();
+            this.note = "random note";
         }
     }
 
