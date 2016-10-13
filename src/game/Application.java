@@ -1,5 +1,6 @@
 package game;
 
+import game.exceptions.DeadEndException;
 import libs.form.Form;
 
 /**
@@ -15,28 +16,26 @@ public class Application {
         player.setCurrentRoom(map.getStartingRoom());
         createForm();
         while(true) {
-            setPossibleDirections(player.getCurrentRoom());
-            form.askForAllFields();
-            switch (form.get("direction")) {
-                case "w":
-                    player.setCurrentRoom(map.getRoom(player.getCurrentRoom(), Room.Direction.WEST));
-                    break;
-                case "n":
-                    player.setCurrentRoom(map.getRoom(player.getCurrentRoom(), Room.Direction.NORTH));
-                    break;
-                case "e":
-                    player.setCurrentRoom(map.getRoom(player.getCurrentRoom(), Room.Direction.EAST));
-                    break;
-                case "s":
-                    player.setCurrentRoom(map.getRoom(player.getCurrentRoom(), Room.Direction.SOUTH));
-                    break;
+            try {
+                setPossibleDirections(player.getCurrentRoom());
+            } catch (DeadEndException e) {
+                System.out.println("dead end");
+                break;
             }
+            form.askForAllFields();
+            player.setCurrentRoom(
+                    map.getRoom(player.getCurrentRoom(), form.get("direction"))
+            );
             System.out.println(player.getCurrentRoom());
         }
+        System.out.println("game over");
     }
 
-    private void setPossibleDirections(Room currentRoom) {
+    private void setPossibleDirections(Room currentRoom) throws DeadEndException {
         String[] possibleDirections = currentRoom.getPassages();
+        if(possibleDirections.length == 1 && possibleDirections[0].equals("")) {
+            throw new DeadEndException();
+        }
         form.getInput("direction").setAllowedValues(possibleDirections);
     }
 

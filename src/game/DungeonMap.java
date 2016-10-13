@@ -19,8 +19,8 @@ public class DungeonMap {
         // TODO: implement reading from a file
         String[] map = new String[4];
         map[0] = "0,1--100000-note,1-ws,1-es";
-        map[1] = "0,1-es,1-ws,0";
-        map[2] = "0,1-es,1-ws,0";
+        map[1] = "0,1-esn,1-wsn,0";
+        map[2] = "0,1-esn,1-wsn,0";
         map[3] = "0,1-en,1-wn,0";
 
         for (int x = 0; x < map.length; x++) {
@@ -84,21 +84,21 @@ public class DungeonMap {
         }
     }
 
-    public Room getRoom(Room originalRoom, Room.Direction direction) {
+    public Room getRoom(Room originalRoom, String direction) {
         int x = originalRoom.x;
         int y = originalRoom.y;
         switch (direction) {
-            case NORTH:
+            case "w":
+                y--;
+                break;
+            case "n":
                 x--;
                 break;
-            case SOUTH:
-                x++;
-                break;
-            case EAST:
+            case "e":
                 y++;
                 break;
-            case WEST:
-                y--;
+            case "s":
+                x++;
                 break;
         }
         return rooms.get(x).get(y);
