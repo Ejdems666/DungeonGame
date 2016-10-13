@@ -62,16 +62,16 @@ public class DungeonMap {
 
     private void setDirections(String directionMapper, Room room) throws Exception {
         for (int i = 0; i < directionMapper.length(); i++) {
-            char direction = directionMapper.charAt(i);
+            char inputDirection = directionMapper.charAt(i);
             boolean correct = false;
-            for (Room.Direction d : Room.Direction.values()) {
-                if (d.getValue() == direction) {
-                    room.setDirection(d);
+            for (Room.Direction direction : Room.Direction.values()) {
+                if (direction.getValue() == inputDirection) {
+                    room.setDirection(direction);
                     correct = true;
                 }
             }
             if (!correct) {
-                throw new Exception("Wrong direction: " + direction);
+                throw new Exception("Wrong direction: " + inputDirection);
             }
         }
     }
