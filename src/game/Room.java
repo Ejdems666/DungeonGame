@@ -4,11 +4,6 @@ package game;
  * Created by Ejdems on 10/10/2016.
  */
 public class Room {
-    final int NORTH = 'n';
-    final int SOUTH = 's';
-    final int EAST = 'e';
-    final int WEST = 'w';
-
     private String passages = "";
 
     float gold;
@@ -24,8 +19,8 @@ public class Room {
         this.note = note;
     }
 
-    public void setDirection(char direction) {
-        this.passages += direction;
+    public void setDirection(Direction direction) {
+        this.passages += direction.getValue();
     }
 
     public boolean hasPassageTo(char direction) {
@@ -34,5 +29,18 @@ public class Room {
 
     public String toString() {
         return "Room with this gold: "+gold;
+    }
+
+    public enum Direction {
+        NORTH('n'), SOUTH('s'), WEST('w'), EAST('e');
+
+        char value;
+        Direction(char value) {
+            this.value = value;
+        }
+
+        public char getValue() {
+            return  value;
+        }
     }
 }

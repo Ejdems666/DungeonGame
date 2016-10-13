@@ -43,7 +43,12 @@ public class DungeonMap {
             String[] extrasMapper = roomMapper.substring(2).split("-");
             float gold = getGold(extrasMapper);
             Room room = new Room(gold);
-            setDirections(extrasMapper[0], room);
+            try {
+                setDirections(extrasMapper[0], room);
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+                System.exit(1);
+            }
             return room;
         }
     }
@@ -55,11 +60,19 @@ public class DungeonMap {
         return random.nextInt(10);
     }
 
-    private void setDirections(String directionMapper, Room room) {
+    private void setDirections(String directionMapper, Room room) throws Exception {
         for (int i = 0; i < directionMapper.length(); i++) {
-            // TODO: add enumaration control
             char direction = directionMapper.charAt(i);
-            room.setDirection(direction);
+            boolean correct = false;
+            for (Room.Direction d : Room.Direction.values()) {
+                if(d.getValue() == direction) {
+                    room.setDirection(d);
+                    correct = true;
+                }
+            }
+            if(!correct) {
+                throw new Exception("Wrong direction: "+direction);
+            }
         }
     }
 }
