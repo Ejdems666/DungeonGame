@@ -27,22 +27,23 @@ public class DungeonMap {
             String[] roomMappers = map[x].split(",");
             rooms.add(new ArrayList<Room>());
             for (int y = 0; y < roomMappers.length; y++) {
-                Room room = getRoom(roomMappers[y]);
-                room.setPoint(x,y);
-                rooms.get(x).add(room);
+                if (roomMappers[y].charAt(0) == '0') {
+                    rooms.get(x).add(null);
+                } else {
+                    Room room = getRoom(roomMappers[y]);
+                    room.setPoint(x, y);
+                    rooms.get(x).add(room);
+                }
             }
         }
-        System.out.print(rooms);
+//        System.out.print(rooms);
     }
 
     private Room getRoom(String roomMapper) {
-        if (roomMapper.charAt(0) == '0') {
-            return null;
-        }
         String[] extrasMapper = roomMapper.substring(2).split("-");
         float gold = getGold(extrasMapper);
         String note = getNote(extrasMapper);
-        Room room = new Room(gold,note);
+        Room room = new Room(gold, note);
         try {
             setDirections(extrasMapper[0], room);
         } catch (Exception e) {
@@ -81,5 +82,37 @@ public class DungeonMap {
                 throw new Exception("Wrong direction: " + inputDirection);
             }
         }
+    }
+
+    public Room getRoom(Room originalRoom, Room.Direction direction) {
+        int x = originalRoom.x;
+        int y = originalRoom.y;
+        switch (direction) {
+            case NORTH:
+                x--;
+                break;
+            case SOUTH:
+                x++;
+                break;
+            case EAST:
+                y++;
+                break;
+            case WEST:
+                y--;
+                break;
+        }
+        return rooms.get(x).get(y);
+    }
+
+    public Room getStartingRoom() {
+        int x;
+        int y;
+        Room room = null;
+        while(room == null) {
+            x = random.nextInt(rooms.size() - 1);
+            y = random.nextInt(rooms.get(x).size() - 1);
+            room = rooms.get(x).get(y);
+        }
+        return room;
     }
 }

@@ -4,6 +4,10 @@ package game;
  * Created by Ejdems on 10/10/2016.
  */
 public class Room {
+    public String[] getPassages() {
+        return passages.split("");
+    }
+
     private String passages = "";
 
     float gold;

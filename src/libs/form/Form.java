@@ -50,7 +50,7 @@ public class Form {
         }
         return ((NumberField) input).getValue();
     }
-    private FormField getInput(String name) {
+    public FormField getInput(String name) {
         FormField input = inputs.get(name);
         if(input == null) {
             System.out.println("Nonexistent form field '"+name+"'.");
