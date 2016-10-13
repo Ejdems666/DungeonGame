@@ -10,14 +10,13 @@ public class Room {
     String note;
     int visit=0;
 
-    Room(float gold) {
-        this.gold = gold;
-        this.note = "Random note"; //TODO: make 'random' note generator
-    }
-
     Room(float gold, String note) {
         this.gold = gold;
-        this.note = note;
+        if(!note.isEmpty()) {
+            this.note = note;
+        } else {
+            this.note = "Random note";
+        }
     }
 
     public void setDirection(Direction direction) {
@@ -29,7 +28,7 @@ public class Room {
     }
 
     public String toString() {
-        return "Room with this gold: "+gold;
+        return note+gold+passages;
     }
 
     public enum Direction {

@@ -18,16 +18,16 @@ public class DungeonMap {
     public void createDungeonMap() {
         // TODO: implement reading from a file
         String[] map = new String[4];
-        map[0] = "0,1-es-1000,1-ws,0";
+        map[0] = "0,1--100000-note,1-ws,1-es";
         map[1] = "0,1-es,1-ws,0";
         map[2] = "0,1-es,1-ws,0";
         map[3] = "0,1-en,1-wn,0";
 
-        for (int i = 0; i < map.length; i++) {
-            String[] roomMappers = map[i].split(",");
+        for (int x = 0; x < map.length; x++) {
+            String[] roomMappers = map[x].split(",");
             rooms.add(new ArrayList<Room>());
-            for (int ii = 0; ii < roomMappers.length; ii++) {
-                rooms.get(i).add(getRoom(roomMappers[ii]));
+            for (int y = 0; y < roomMappers.length; y++) {
+                rooms.get(x).add(getRoom(roomMappers[y]));
             }
         }
         System.out.print(rooms);
@@ -39,7 +39,8 @@ public class DungeonMap {
         }
         String[] extrasMapper = roomMapper.substring(2).split("-");
         float gold = getGold(extrasMapper);
-        Room room = new Room(gold);
+        String note = getNote(extrasMapper);
+        Room room = new Room(gold,note);
         try {
             setDirections(extrasMapper[0], room);
         } catch (Exception e) {
@@ -51,10 +52,17 @@ public class DungeonMap {
     }
 
     private float getGold(String[] extrasMapper) {
-        if (extrasMapper.length >= 2) {
+        if (extrasMapper.length >= 2 && !extrasMapper[1].isEmpty()) {
             return Float.parseFloat(extrasMapper[1]);
         }
         return random.nextInt(10);
+    }
+
+    private String getNote(String[] extrasMapper) {
+        if (extrasMapper.length >= 3) {
+            return extrasMapper[2];
+        }
+        return "";
     }
 
     private void setDirections(String directionMapper, Room room) throws Exception {
