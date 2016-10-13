@@ -1,7 +1,5 @@
 package game;
 
-import org.jetbrains.annotations.Nullable;
-
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -35,7 +33,6 @@ public class DungeonMap {
         System.out.print(rooms);
     }
 
-    @Nullable
     private Room getRoom(String roomMapper) {
         if (roomMapper.charAt(0) == '0') {
             return null;

@@ -27,4 +27,9 @@ public class Output {
         message(message);
         separator();
     }
+
+    public void crashMessage(Exception e) {
+        System.out.print(e.getMessage());
+        System.exit(1);
+    }
 }
