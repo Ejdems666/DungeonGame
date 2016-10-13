@@ -4,25 +4,25 @@ package game;
  * Created by Ejdems on 10/10/2016.
  */
 public class Room {
-    public String[] getPassages() {
-        return passages.split("");
-    }
-
     private String passages = "";
-
     float gold;
     String note;
     int visit = 0;
     int x;
     int y;
+    private static NoteGenerator noteGenerator = new NoteGenerator();
 
     Room(float gold, String note) {
         this.gold = gold;
         if(!note.isEmpty()) {
             this.note = note;
         } else {
-            this.note = "Random note";
+            this.note = noteGenerator.getRandomNote();
         }
+    }
+
+    public String[] getPassages() {
+        return passages.split("");
     }
 
     public void setDirection(Direction direction) {

@@ -18,10 +18,10 @@ public class DungeonMap {
     public void createDungeonMap() {
         // TODO: implement reading from a file
         String[] map = new String[4];
-        map[0] = "0,1--100000-note,1-ws,1-es";
-        map[1] = "0,1-esn,1-wsn,0";
-        map[2] = "0,1-esn,1-wsn,0";
-        map[3] = "0,1-en,1-wn,0";
+        map[0] = "0,1-s,1-ws,1-ws";
+        map[1] = "1-s,0,1---10000-GOAL ROOM,1-ns";
+        map[2] = "1-sn,1-es,1-we,1-nws";
+        map[3] = "1-ne,1-enw,1-wn,1-w";
 
         for (int x = 0; x < map.length; x++) {
             String[] roomMappers = map[x].split(",");
@@ -109,7 +109,7 @@ public class DungeonMap {
         int y;
         Room room = null;
         while(room == null) {
-            x = random.nextInt(rooms.size() - 1);
+            x = random.nextInt(3)+2;
             y = random.nextInt(rooms.get(x).size() - 1);
             room = rooms.get(x).get(y);
         }
