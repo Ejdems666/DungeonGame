@@ -8,6 +8,7 @@ public class Room {
 
     float gold;
     String note;
+    int visit=0;
 
     Room(float gold) {
         this.gold = gold;
@@ -43,4 +44,9 @@ public class Room {
             return  value;
         }
     }
+
+    public void visit() {
+        visit++;
+    }
+    
 }
