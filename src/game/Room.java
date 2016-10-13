@@ -4,12 +4,12 @@ package game;
  * Created by Ejdems on 10/10/2016.
  */
 public class Room {
-    final int NORTH = 1;
-    final int SOUTH = 2;
-    final int EAST = 4;
-    final int WEST = 8;
+    final int NORTH = 'n';
+    final int SOUTH = 's';
+    final int EAST = 'e';
+    final int WEST = 'w';
 
-    private float passages = 0;
+    private String passages = "";
 
     float gold;
     String note;
@@ -24,17 +24,12 @@ public class Room {
         this.note = note;
     }
 
-    public void setDirection(int direction) {
+    public void setDirection(char direction) {
         this.passages += direction;
     }
 
-    public boolean hasPassageTo(int direction) {
-        if(passages < direction) {
-            return false;
-        } else if(passages == direction) {
-            return true;
-        }
-        return passages/direction <= 2;
+    public boolean hasPassageTo(char direction) {
+        return passages.indexOf(direction) >= 0;
     }
 
     public String toString() {

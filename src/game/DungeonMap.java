@@ -20,10 +20,10 @@ public class DungeonMap {
     public void createDungeonMap() {
         // TODO: implement reading from a file
         String[] map = new String[4];
-        map[0] = "0,1-42-1000,1-82,0";
-        map[1] = "0,1-42,1-82,0";
-        map[2] = "0,1-42,1-82,0";
-        map[3] = "0,1-42,1-82,0";
+        map[0] = "0,1-es-1000,1-ws,0";
+        map[1] = "0,1-es,1-ws,0";
+        map[2] = "0,1-es,1-ws,0";
+        map[3] = "0,1-en,1-wn,0";
 
         for (int i = 0; i < map.length; i++) {
             String[] roomMappers = map[i].split(",");
@@ -60,7 +60,7 @@ public class DungeonMap {
 
     private void setDirections(String directionMapper, Room room) {
         for (int i = 0; i < directionMapper.length(); i++) {
-            int direction = Integer.parseInt(directionMapper.substring(i,i+1));
+            char direction = directionMapper.charAt(i);
             room.setDirection(direction);
         }
     }
