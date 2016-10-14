@@ -22,8 +22,8 @@ public class Room {
         }
     }
 
-    public String[] getPassages() {
-        return passages.split("");
+    public String getPassages() {
+        return passages;
     }
 
     public void setDirection(Direction direction) {
@@ -35,7 +35,7 @@ public class Room {
     }
 
     public String toString() {
-        return note+gold+passages;
+        return "note: " + note + "\ngold: " + gold + "\npossible passages:" + passages;
     }
 
     public void visit() {

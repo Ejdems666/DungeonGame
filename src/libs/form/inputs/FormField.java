@@ -65,9 +65,6 @@ public class FormField {
         tryCount = 0;
     }
     private void printLabel() {
-        if(tryCount == 1) {
-            printHelp();
-        }
         System.out.println(label +": ");
     }
     protected void printHelp() {

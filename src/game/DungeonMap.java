@@ -1,5 +1,7 @@
 package game;
 
+import libs.Output;
+
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -10,16 +12,13 @@ public class DungeonMap {
 
     private ArrayList<ArrayList<Room>> rooms = new ArrayList<>();
     private Random random = new Random();
-
-    public DungeonMap() {
-
-    }
+    private Output output = new Output();
 
     public void createDungeonMap() {
         // TODO: implement reading from a file
         String[] map = new String[4];
-        map[0] = "0,1-w,1-ws,1-ws";
-        map[1] = "1-s,0,1---10000-GOAL ROOM,1-ns";
+        map[0] = "0,1-e,1-ws,1-ws";
+        map[1] = "1-s,0,1--10000-GOAL ROOM,1-ns";
         map[2] = "1-sn,1-es,1-we,1-nws";
         map[3] = "1-ne,1-enw,1-wn,1-w";
 
@@ -36,7 +35,6 @@ public class DungeonMap {
                 }
             }
         }
-//        System.out.print(rooms);
     }
 
     private Room getRoom(String roomMapper) {
@@ -47,8 +45,7 @@ public class DungeonMap {
         try {
             setDirections(extrasMapper[0], room);
         } catch (Exception e) {
-            System.out.println(e.getMessage());
-            System.exit(1);
+           output.crashMessage(e);
         }
         return room;
 

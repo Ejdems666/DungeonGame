@@ -1,6 +1,7 @@
 package game;
 
 import game.exceptions.DeadEndException;
+import libs.Output;
 import libs.form.Form;
 
 /**
@@ -8,6 +9,7 @@ import libs.form.Form;
  */
 public class Application {
     private Form form = new Form();
+    private Output output = new Output();
     private Player player;
 
     public void run(PlayerFactory playerFactory, DungeonMap map){
@@ -16,27 +18,26 @@ public class Application {
         player.setCurrentRoom(map.getStartingRoom());
         createForm();
         while(true) {
+            output.separator("current room:\n" + player.getCurrentRoom() + "\n");
             try {
                 setPossibleDirections(player.getCurrentRoom());
             } catch (DeadEndException e) {
-                System.out.println("dead end");
-                break;
+                output.separator("game over");
+                output.crashMessage(e);
             }
             form.askForAllFields();
             player.setCurrentRoom(
                     map.getRoom(player.getCurrentRoom(), form.get("direction"))
             );
-            System.out.println(player.getCurrentRoom());
         }
-        System.out.println("game over");
     }
 
     private void setPossibleDirections(Room currentRoom) throws DeadEndException {
-        String[] possibleDirections = currentRoom.getPassages();
-        if(possibleDirections.length == 1 && possibleDirections[0].equals("")) {
-            throw new DeadEndException();
+        String possibleDirections = currentRoom.getPassages();
+        if(possibleDirections.equals("")) {
+            throw new DeadEndException("dead end, no possible passages!");
         }
-        form.getInput("direction").setAllowedValues(possibleDirections);
+        form.getInput("direction").setAllowedValues(possibleDirections.split(""));
     }
 
     public void createForm() {

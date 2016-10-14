@@ -24,8 +24,8 @@ public class Output {
     }
 
     public void separator(String message) {
-        message(message);
         separator();
+        message(message);
     }
 
     public void crashMessage(Exception e) {
