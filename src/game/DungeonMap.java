@@ -105,7 +105,7 @@ public class DungeonMap {
         int x;
         int y;
         Room room = null;
-        while(room == null || room.getPassages().equals("")) {
+        while(room == null || room.isDeadEnd()) {
             x = random.nextInt(rooms.size()-1);
             y = random.nextInt(rooms.get(x).size()-1);
             room = rooms.get(x).get(y);

@@ -26,6 +26,10 @@ public class Room {
         return passages;
     }
 
+    public boolean isDeadEnd() {
+        return passages.equals("");
+    }
+
     public void setDirection(Direction direction) {
         this.passages += direction.getValue();
     }

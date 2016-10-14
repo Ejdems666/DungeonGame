@@ -34,7 +34,7 @@ public class Application {
 
     private void setPossibleDirections(Room currentRoom) throws DeadEndException {
         String possibleDirections = currentRoom.getPassages();
-        if(possibleDirections.equals("")) {
+        if(currentRoom.isDeadEnd()) {
             throw new DeadEndException("dead end, no possible passages!");
         }
         form.getInput("direction").setAllowedValues(possibleDirections.split(""));
