@@ -23,13 +23,13 @@ public class DungeonMap {
         map[3] = "1-ne,1-enw,1-wn,1-w";
 
         for (int x = 0; x < map.length; x++) {
-            String[] roomMappers = map[x].split(",");
+            String[] roomsMapper = map[x].split(",");
             rooms.add(new ArrayList<Room>());
-            for (int y = 0; y < roomMappers.length; y++) {
-                if (roomMappers[y].charAt(0) == '0') {
+            for (int y = 0; y < roomsMapper.length; y++) {
+                if (roomsMapper[y].charAt(0) == '0') {
                     rooms.get(x).add(null);
                 } else {
-                    Room room = getRoom(roomMappers[y]);
+                    Room room = getRoom(roomsMapper[y]);
                     room.setPoint(x, y);
                     rooms.get(x).add(room);
                 }
@@ -105,7 +105,7 @@ public class DungeonMap {
         int x;
         int y;
         Room room = null;
-        while(room == null) {
+        while(room == null || room.getPassages().equals("")) {
             x = random.nextInt(rooms.size()-1);
             y = random.nextInt(rooms.get(x).size()-1);
             room = rooms.get(x).get(y);
